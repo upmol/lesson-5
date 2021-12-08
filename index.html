@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Магазин</title>
+    <script
+      src="https://kit.fontawesome.com/d9b88c1317.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <div id="app">
+    <body>
+      <header class="header">
+        <div class="header__blockHeader center">
+          <div class="header__logo">
+            <h1>My Shop <i class="fas fa-tag"></i></h1>
+          </div>
+          <div class="header__search">
+            <input class="header__search_input" type="text" v-model="search" />
+            <button id="search" v-on:click="filter">искать</button>
+          </div>
+          <button
+            class="header__cart-button cart-button"
+            type="button"
+            v-on:click="showBasket"
+          >
+            <i class="fas fa-shopping-cart"></i>Корзина
+          </button>
+          <div class="header__basket_card" v-if="basketVision">
+            <i v-on:click="closeBasket" class="fas fa-times"></i>
+            <h4>
+              В корзине пока пусто <br />
+              <i class="far fa-frown"></i>
+            </h4>
+          </div>
+        </div>
+      </header>
+      <main>
+        <div></div>
+        <div v-if="!!filteredGoods.length" class="goods-list center">
+          <div class="goods-item" v-for="item in filteredGoods">
+            <img
+              src="https://images.unsplash.com/photo-1526570207772-784d36084510?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+            />
+            <h3>{{item.title }}</h3>
+            <p>{{item.price}}</p>
+            <button>ДОБАВИТЬ</button>
+          </div>
+        </div>
+        <div class="loading" v-else></div>
+      </main>
+    </body>
+  </div>
+</html>
